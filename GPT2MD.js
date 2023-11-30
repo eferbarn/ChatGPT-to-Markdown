@@ -1,5 +1,5 @@
 function SaveChatGPTtoMD() {
-	const chatMessages = document.querySelectorAll(".text-base.p-4");
+	const chatMessages = document.querySelectorAll(".text-base.md\\:px-5");
 	const pageTitle = document.title;
 	const now = new Date();
 	const dateString = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}-${now.getHours().toString().padStart(2, '0')}-${now.getMinutes().toString().padStart(2, '0')}-${now.getSeconds().toString().padStart(2, '0')}`;
@@ -14,8 +14,10 @@ function SaveChatGPTtoMD() {
 			Revision = `Edit Revision: **${revisionElement.innerHTML}**\n`;
         }
         
-		if (message.querySelector(".whitespace-pre-wrap")) {
-			let messageText = message.querySelector(".whitespace-pre-wrap").innerHTML;
+		if (message.querySelector("div > div > div > .whitespace-pre-wrap")) {
+			let messageText = message.querySelector(
+				"div > div > div > .whitespace-pre-wrap"
+			).innerHTML;
 			const sender = message.querySelector("img") ? "You" : "ChatGPT";
 			// adds Escapes to non-MD
 			messageText = messageText.replace(/_/gs, "\_").replace(/\*/gs, "\*").replace(/\^/gs, "\^").replace(/~/gs, "\~"); // I debated adding #, > (blockquotes), and | (table)
